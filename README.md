@@ -16,10 +16,13 @@ Each agent is pinned to the cheapest model tier that does its job well. The `mod
 | **log-miner** | `haiku` | Extract & aggregate from JSONL / logs / CSV / JSON | edits; searches source code |
 | **scribe** | `haiku` | Draft commit messages / PR bodies / changelog from a diff | commits, pushes, opens PRs |
 | **dep-checker** | `haiku` | Read lockfiles/changelogs, report installed vs latest + upgrade notes | performs upgrades |
+| **tidy** | `haiku` | Run the repo's own formatter + lint auto-fixers, report what's left | judgement fixes; logic changes |
 | **mechanic** | `sonnet` | Apply an *already-specified* mechanical change + verify with the repo build | design decisions; scope creep |
 | **test-writer** | `sonnet` | Write/extend tests in the repo's style, auto-detecting the runner | edits product code to pass tests |
 | **locale-translator** | `sonnet` | Mirror approved `en` → `fi`/`sv`/… i18n | edits the source locale; adds keys |
 | **doc-scribe** | `sonnet` | READMEs / docstrings / SKILL.md / why-comments | changes logic while documenting |
+| **migrator** | `sonnet` | Generate/apply Prisma or EF Core migrations (auto-detected) | destructive migrations; prod DBs |
+| **bisect** | `sonnet` | `git bisect` to the commit that introduced a regression | fixes the bug it finds |
 | **architect** | `opus` | Read-only design/planning **and the escalation target** | edits source |
 
 Read it as three rungs:
