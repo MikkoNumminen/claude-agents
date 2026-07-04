@@ -67,3 +67,7 @@ Every agent, cheap or not:
 ## Adding an agent
 
 Drop a `agents/<name>.md` with the standard frontmatter (`name`, `description`, `tools`, `model`) and a body following the existing shape (`Use when` / `Do not use — escalate instead` / `How I work` / `What I return`). Pick the **cheapest** tier that does the job, then `./install.sh <name>`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
