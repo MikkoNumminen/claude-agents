@@ -31,6 +31,14 @@ Read it as three rungs:
 - **`sonnet` — make the change.** Real edits whose *shape is already known* — apply a spec, write a test in an existing pattern, mirror a locale, write docs. Sonnet is entirely capable here; Opus is waste.
 - **`opus` — decide the shape.** Architecture, trade-offs, and correctness-critical reasoning. `architect` is deliberately the one expensive agent — it also documents **what must not be routed down**.
 
+### Two knobs, not one: model *and* effort
+
+Each agent also pins a reasoning-**`effort`** in its frontmatter, so effort no longer inherits the orchestrator's session setting. This decouples the two costs: you can run the main session at `high`/`max` for hard reasoning without a delegated `scout` or `tidy` burning max-effort tokens on grep-and-report work.
+
+- **`low`** — the `haiku` doers (scout, tidy, log-miner, dep-checker, scribe): look, run a tool, report. Nothing to reason about.
+- **`medium`** — the `sonnet` doers (mechanic, test-writer, locale-translator, doc-scribe, migrator, bisect): apply a known shape and verify.
+- **`high`** — `architect` only. A per-call `effort` override can still push it to `max` for the hardest problems.
+
 ### Do not route these down
 
 The cost-cutting is principled, not blanket. Keep on a strong model (main session or `architect`):

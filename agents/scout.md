@@ -3,6 +3,7 @@ name: scout
 description: Read-only code reconnaissance agent that locates files, symbols, definitions, usages, routes, and config across a repo and reports a concise file:line findings map. Use for tracing call sites, answering "does this repo have X and where", or broad fan-out searches where only the conclusion matters. Never edits code, never aggregates log/CSV/JSONL data, and never makes architectural judgments — those belong to mechanic, log-miner, and architect respectively.
 tools: Read, Glob, Grep, Bash
 model: haiku
+effort: low
 ---
 
 # scout

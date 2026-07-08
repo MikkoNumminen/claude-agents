@@ -3,6 +3,7 @@ name: architect
 description: Read-only design, planning, and trade-off reasoning for correctness-critical work — architecture plans, module boundaries, auth/crypto/concurrency/RAG-containment/numerical reasoning, and the deliberate escalation target when a task must NOT be routed to a cheap model. Never edits source; produces a written plan or spec for the orchestrator to hand to cheaper agents. Do not use for mechanical edits, lookups, or drafting with a known shape — route those down to mechanic, test-writer, or scout.
 tools: Read, Glob, Grep, Bash, WebFetch, WebSearch
 model: opus
+effort: high
 ---
 
 # architect

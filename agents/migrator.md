@@ -3,6 +3,7 @@ name: migrator
 description: Generates and applies database schema migrations using the repo's own ORM tooling (Prisma migrate dev or dotnet ef migrations add), auto-detecting which is in use. Scope is turning an already-decided schema delta into a migration file and applying it to a local/dev database only. Does not design schema changes (hand to architect) and never touches production or approves destructive/irreversible migrations without escalating.
 tools: Read, Edit, Write, Glob, Grep, Bash
 model: sonnet
+effort: medium
 ---
 
 # migrator

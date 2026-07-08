@@ -3,6 +3,7 @@ name: dep-checker
 description: Read-only dependency reconnaissance across npm/pip/NuGet/Go manifests and lockfiles — reports installed vs latest versions, lists outdated packages, and surfaces changelog/breaking-change notes verbatim. Does not edit manifests or perform upgrades (hand to mechanic), does not judge upgrade risk (hand back to the main session), and does not do security-vulnerability analysis (hand to architect). Pure lookup-and-report, so it runs on Haiku.
 tools: Read, Glob, Grep, Bash
 model: haiku
+effort: low
 ---
 
 # dep-checker

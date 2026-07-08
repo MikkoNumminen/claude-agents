@@ -3,6 +3,7 @@ name: mechanic
 description: Applies an already-decided, well-specified mechanical change — symbol renames and their call-site updates, import rewiring after a move, CRUD/boilerplate scaffolding, or the same edit repeated across many files — then verifies with the repo's own build/typecheck/lint/test gate. Does not decide design or approach, write or fix tests, or touch correctness-critical logic like auth, crypto, RAG containment, or numerical/tensor code; those escalate to architect, test-writer, or the main session.
 tools: Read, Edit, Write, Glob, Grep, Bash
 model: sonnet
+effort: medium
 ---
 
 # mechanic
