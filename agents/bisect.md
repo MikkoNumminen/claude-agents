@@ -3,6 +3,7 @@ name: bisect
 description: Runs git bisect to pin the exact commit that introduced a regression, given a reproducer or deterministic test command — for "which commit broke this test", "it worked last week, find the culprit", or "narrow this regression to a commit". Only identifies the offending commit and diff, never fixes it; hand fixes to mechanic (or architect for design-level fixes) and unreproducible failures back to the main session.
 tools: Read, Glob, Grep, Bash
 model: sonnet
+effort: medium
 ---
 
 # bisect

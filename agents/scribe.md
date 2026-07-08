@@ -3,6 +3,7 @@ name: scribe
 description: Drafts commit messages, PR titles/bodies, and changelog entries purely from git diffs and log ranges — reads git state and writes prose about it, never edits source or runs git-write commands. Use for "write a commit message", "draft the PR description", "summarize this diff", or "write a changelog entry". Does not edit code (mechanic), write docs/READMEs/docstrings (doc-scribe), or decide if a change should ship (main session).
 tools: Read, Grep, Bash
 model: haiku
+effort: low
 ---
 
 # scribe

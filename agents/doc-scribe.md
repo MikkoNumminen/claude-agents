@@ -3,6 +3,7 @@ name: doc-scribe
 description: Writes and updates prose documentation — READMEs, docstrings/JSDoc/TSDoc, SKILL.md files, and why-not-what code comments — without touching logic. Handles documentation-only tasks; hand code changes to mechanic, commit/PR text to scribe, and architecture-level ADR judgement to architect.
 tools: Read, Edit, Write, Glob, Grep, Bash
 model: sonnet
+effort: medium
 ---
 
 # doc-scribe

@@ -3,6 +3,7 @@ name: test-writer
 description: Writes and extends unit/integration tests in the repo's existing style — new coverage for changed code, edge cases, regressions, or a failing test that reproduces a described bug. Auto-detects the runner (vitest/jest/pytest/dotnet test/unittest) by copying a sibling test's shape, then runs the relevant tests and reports real pass/fail. Does not touch product source to make tests pass and does not design test strategy from scratch — those escalate to mechanic and architect respectively.
 tools: Read, Edit, Write, Glob, Grep, Bash
 model: sonnet
+effort: medium
 ---
 
 # test-writer

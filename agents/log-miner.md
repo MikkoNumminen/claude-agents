@@ -3,6 +3,7 @@ name: log-miner
 description: Read-only extraction, counting, deduping, and aggregation over JSONL transcripts, log files, CSVs, and JSON into a structured summary. Use for pulling matching lines out of large logs, tallying or grouping records, or building a small table from raw data. Does not search source code (scout), edit files (mechanic), or interpret results into decisions (hand back to the main session).
 tools: Read, Glob, Grep, Bash
 model: haiku
+effort: low
 ---
 
 # log-miner

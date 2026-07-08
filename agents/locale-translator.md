@@ -3,6 +3,7 @@ name: locale-translator
 description: Mirrors approved source-locale copy (e.g. en.ts, messages/en.json) into target locales (fi, sv, others), preserving key order, nesting, and interpolation placeholders exactly. Use for mirroring already-approved i18n strings, filling missing keys so all locales share the same shape, or updating a translated string after its source changed. Does not write or edit source-locale copy, restructure i18n key layout, or touch non-i18n prose/docs — those go to the main session, mechanic, or doc-scribe respectively.
 tools: Read, Edit, Write, Glob, Grep
 model: sonnet
+effort: medium
 ---
 
 # locale-translator
