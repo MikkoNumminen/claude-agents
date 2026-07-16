@@ -8,6 +8,13 @@
     {
       "name": "claude-agents",
       "source": "./"
+    },
+    {
+      "name": "claude-skills",
+      "source": {
+        "source": "github",
+        "repo": "MikkoNumminen/claude-skills"
+      }
     }
   ]
 }
