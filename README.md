@@ -61,6 +61,8 @@ The repo is a Claude Code plugin and its own marketplace. Inside any Claude Code
 
 Update later with `/plugin update claude-agents@claude-agents` (or `/plugin marketplace update claude-agents` to refresh from git first — the plugin needs the `@claude-agents` marketplace qualifier, the marketplace doesn't). Plugin-installed agents are **namespaced** — invoke them as `claude-agents:scout`, `claude-agents:mechanic`, etc.
 
+The same marketplace also serves the sibling [`claude-skills`](https://github.com/MikkoNumminen/claude-skills) library — once the marketplace is added, `/plugin install claude-skills` gets you the audit/maintenance skills too.
+
 ### With install.sh (raw copies, bare names)
 
 ```bash
