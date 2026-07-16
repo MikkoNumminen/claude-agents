@@ -1,0 +1,13 @@
+{
+  "name": "claude-agents",
+  "description": "Marketplace for the claude-agents cost-routing subagent set.",
+  "owner": {
+    "name": "MikkoNumminen"
+  },
+  "plugins": [
+    {
+      "name": "claude-agents",
+      "source": "./"
+    }
+  ]
+}

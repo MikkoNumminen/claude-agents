@@ -1,0 +1,7 @@
+{
+  "name": "claude-agents",
+  "description": "Cost-routing subagents for Claude Code: cheap pinned workers (scout, mechanic, test-writer, ...) plus an unpinned architect that inherits the session model and effort.",
+  "author": {
+    "name": "MikkoNumminen"
+  }
+}
