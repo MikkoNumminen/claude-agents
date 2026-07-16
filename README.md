@@ -2,7 +2,7 @@
 
 A small, global set of **cost-routing subagents** for Claude Code. The whole point is to stop paying Opus prices for work that a cheaper model does just as well: search, mechanical edits, test-writing, translation, log-mining, doc-writing. The expensive model stays for the work that actually needs judgement.
 
-These install into `~/.claude/agents/`, so they're available in **every repo** on this machine — invoke them with the `Agent` tool (`subagent_type: "scout"`, `"mechanic"`, …) or let the orchestrator delegate to them automatically.
+Install them as a **Claude Code plugin** (see below) or copy them into `~/.claude/agents/` with the bundled script — either way they're available in **every repo** on this machine. Invoke them with the `Agent` tool (`subagent_type: "scout"`, `"mechanic"`, … — plugin installs prefix the name, e.g. `"claude-agents:scout"`) or let the orchestrator delegate to them automatically.
 
 > Sibling of [`claude-skills`](../claude-skills). Same idea (a versioned, installable library of Claude Code tooling), different axis: skills package *know-how*, these package *who-does-it-and-on-which-model*.
 
@@ -50,6 +50,19 @@ The cheap agents are wired to **stop and hand back** when a task turns out to ne
 
 ## Install
 
+### As a plugin (recommended — no clone needed)
+
+The repo is a Claude Code plugin and its own marketplace. Inside any Claude Code session:
+
+```
+/plugin marketplace add MikkoNumminen/claude-agents
+/plugin install claude-agents
+```
+
+Update later with `/plugin update claude-agents` (or `/plugin marketplace update claude-agents` to refresh from git first). Plugin-installed agents are **namespaced** — invoke them as `claude-agents:scout`, `claude-agents:mechanic`, etc.
+
+### With install.sh (raw copies, bare names)
+
 ```bash
 # every repo, for this user  ->  ~/.claude/agents/
 ./install.sh
@@ -64,7 +77,7 @@ The cheap agents are wired to **stop and hand back** when a task turns out to ne
 ./install.sh --uninstall all # remove the ones this repo owns
 ```
 
-The installer prefers a **symlink** (so `git pull` here propagates with no re-install); where symlinks aren't available (Windows/MSYS) it copies and tells you to re-run after pulling.
+The installer prefers a **symlink** (so `git pull` here propagates with no re-install); where symlinks aren't available (Windows/MSYS) it copies and tells you to re-run after pulling. Script-installed agents keep their bare names (`scout`, not `claude-agents:scout`), and a `~/.claude/agents/` or `.claude/agents/` copy **overrides** the plugin's agent of the same name — so having both installed is harmless, the copies just win.
 
 ## How they behave (shared contract)
 
