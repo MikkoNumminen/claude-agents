@@ -8,7 +8,7 @@ These install into `~/.claude/agents/`, so they're available in **every repo** o
 
 ## The routing ladder
 
-Each agent is pinned to the cheapest model tier that does its job well. The `model:` alias resolves to whatever model currently occupies that tier on the account.
+Each worker agent is pinned to the cheapest model tier that does its job well; `architect` alone is unpinned and inherits the session model. The `model:` alias resolves to whatever model currently occupies that tier on the account.
 
 | Agent | Tier | Job | Never does |
 |---|---|---|---|
@@ -23,21 +23,21 @@ Each agent is pinned to the cheapest model tier that does its job well. The `mod
 | **doc-scribe** | `sonnet` | READMEs / docstrings / SKILL.md / why-comments | changes logic while documenting |
 | **migrator** | `sonnet` | Generate/apply Prisma or EF Core migrations (auto-detected) | destructive migrations; prod DBs |
 | **bisect** | `sonnet` | `git bisect` to the commit that introduced a regression | fixes the bug it finds |
-| **architect** | `opus` | Read-only design/planning **and the escalation target** | edits source |
+| **architect** | *session model* | Read-only design/planning **and the escalation target** | edits source |
 
 Read it as three rungs:
 
 - **`haiku` — look and report.** No writes. Search, extraction, drafting text about a diff. The highest-frequency, lowest-risk work; this is where most of the token savings live.
 - **`sonnet` — make the change.** Real edits whose *shape is already known* — apply a spec, write a test in an existing pattern, mirror a locale, write docs. Sonnet is entirely capable here; Opus is waste.
-- **`opus` — decide the shape.** Architecture, trade-offs, and correctness-critical reasoning. `architect` is deliberately the one expensive agent — it also documents **what must not be routed down**.
+- **session model — decide the shape.** Architecture, trade-offs, and correctness-critical reasoning. `architect` is deliberately the one expensive agent — it carries no `model:` pin, so it inherits whatever the orchestrator session runs (`/model`: Opus, Fable, …). It also documents **what must not be routed down**.
 
 ### Two knobs, not one: model *and* effort
 
-Each agent also pins a reasoning-**`effort`** in its frontmatter, so effort no longer inherits the orchestrator's session setting. This decouples the two costs: you can run the main session at `high`/`max` for hard reasoning without a delegated `scout` or `tidy` burning max-effort tokens on grep-and-report work.
+Each worker agent also pins a reasoning-**`effort`** in its frontmatter, so effort no longer inherits the orchestrator's session setting. This decouples the two costs: you can run the main session at `high`/`max` for hard reasoning without a delegated `scout` or `tidy` burning max-effort tokens on grep-and-report work. (The `Agent` tool has no per-launch effort parameter, so the frontmatter pin is the only place this can be controlled.)
 
 - **`low`** — the `haiku` doers (scout, tidy, log-miner, dep-checker, scribe): look, run a tool, report. Nothing to reason about.
 - **`medium`** — the `sonnet` doers (mechanic, test-writer, locale-translator, doc-scribe, migrator, bisect): apply a known shape and verify.
-- **`high`** — `architect` only. A per-call `effort` override can still push it to `max` for the hardest problems.
+- **inherit** — `architect` only. No `effort:` pin, for the same reason it has no `model:` pin: escalation should mirror the session's `/model` and `/effort` exactly.
 
 ### Do not route these down
 
