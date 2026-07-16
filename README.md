@@ -8,7 +8,7 @@ These install into `~/.claude/agents/`, so they're available in **every repo** o
 
 ## The routing ladder
 
-Each worker agent is pinned to the cheapest model tier that does its job well; `architect` alone is unpinned and inherits the session model. The `model:` alias resolves to whatever model currently occupies that tier on the account.
+Each worker agent is pinned to the cheapest model tier that does its job well — the `model:` alias resolves to whatever model currently occupies that tier on the account. `architect` alone carries no pin: it inherits the session model.
 
 | Agent | Tier | Job | Never does |
 |---|---|---|---|
@@ -28,20 +28,20 @@ Each worker agent is pinned to the cheapest model tier that does its job well; `
 Read it as three rungs:
 
 - **`haiku` — look and report.** No writes. Search, extraction, drafting text about a diff. The highest-frequency, lowest-risk work; this is where most of the token savings live.
-- **`sonnet` — make the change.** Real edits whose *shape is already known* — apply a spec, write a test in an existing pattern, mirror a locale, write docs. Sonnet is entirely capable here; Opus is waste.
-- **session model — decide the shape.** Architecture, trade-offs, and correctness-critical reasoning. `architect` is deliberately the one expensive agent — it carries no `model:` pin, so it inherits whatever the orchestrator session runs (`/model`: Opus, Fable, …). It also documents **what must not be routed down**.
+- **`sonnet` — make the change.** Real edits whose *shape is already known* — apply a spec, write a test in an existing pattern, mirror a locale, write docs. Sonnet is entirely capable here; a bigger model is waste.
+- **session model — decide the shape.** Architecture, trade-offs, and correctness-critical reasoning. `architect` is deliberately the one expensive agent — it carries no `model:` pin, so it inherits whatever the orchestrator session runs (`/model`: Opus, Fable, …). It also documents **what must not be routed down**. Note the flip side: inheritance means the escalation target is only as strong as your `/model` choice — run the session on a cheap model and architect runs cheap too.
 
 ### Two knobs, not one: model *and* effort
 
-Each worker agent also pins a reasoning-**`effort`** in its frontmatter, so effort no longer inherits the orchestrator's session setting. This decouples the two costs: you can run the main session at `high`/`max` for hard reasoning without a delegated `scout` or `tidy` burning max-effort tokens on grep-and-report work. (The `Agent` tool has no per-launch effort parameter, so the frontmatter pin is the only place this can be controlled.)
+Each worker agent also pins a reasoning-**`effort`** in its frontmatter, so effort no longer inherits the orchestrator's session setting. This decouples the two costs: you can run the main session at `high`/`max` for hard reasoning without a delegated `scout` or `tidy` burning max-effort tokens on grep-and-report work. (The `Agent` tool has no per-launch effort parameter, so the frontmatter is the only per-agent knob: pin `effort:` to fix it, or omit the key to follow the session's `/effort`.)
 
 - **`low`** — the `haiku` doers (scout, tidy, log-miner, dep-checker, scribe): look, run a tool, report. Nothing to reason about.
 - **`medium`** — the `sonnet` doers (mechanic, test-writer, locale-translator, doc-scribe, migrator, bisect): apply a known shape and verify.
-- **inherit** — `architect` only. No `effort:` pin, for the same reason it has no `model:` pin: escalation should mirror the session's `/model` and `/effort` exactly.
+- **session `/effort`** — `architect` only. Unpinned like its model, so escalation mirrors the session exactly; to push architect harder on a hard problem, raise the session `/effort`.
 
 ### Do not route these down
 
-The cost-cutting is principled, not blanket. Keep on a strong model (main session or `architect`):
+The cost-cutting is principled, not blanket. Keep on a strong model — the main session, or `architect` when the session `/model` is a strong one (architect inherits it, so it is no stronger than the session):
 
 - **correctness-critical logic** — auth / crypto, RAG containment & grounding-validation, LLM-concurrency, numerical / tensor code (e.g. TTS model internals).
 - **novel design** — new algorithms, module boundaries, anything where picking the approach *is* the work.
@@ -77,7 +77,7 @@ Every agent, cheap or not:
 
 ## Adding an agent
 
-Drop a `agents/<name>.md` with the standard frontmatter (`name`, `description`, `tools`, `model`) and a body following the existing shape (`Use when` / `Do not use — escalate instead` / `How I work` / `What I return`). Pick the **cheapest** tier that does the job, then `./install.sh <name>`.
+Drop a `agents/<name>.md` with the standard frontmatter (`name`, `description`, `tools`, `model`, `effort`) and a body following the existing shape (`Use when` / `Do not use — escalate instead` / `How I work` / `What I return`). Pick the **cheapest** model tier and effort that do the job; omit `model:`/`effort:` only for an agent that should deliberately inherit the session's `/model` and `/effort` (the `architect` pattern). Then `./install.sh <name>`.
 
 ## License
 

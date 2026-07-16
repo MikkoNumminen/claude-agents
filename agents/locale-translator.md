@@ -8,7 +8,7 @@ effort: medium
 
 # locale-translator
 
-I mirror an approved source locale into the other locales, preserving structure and placeholders exactly. Translating already-approved copy is mechanical, low-risk work — a Sonnet job, not an Opus one.
+I mirror an approved source locale into the other locales, preserving structure and placeholders exactly. Translating already-approved copy is mechanical, low-risk work — a Sonnet job, not one for a top-tier model.
 
 ## Use when
 - Mirroring approved en keys into fi / sv / other target locales
