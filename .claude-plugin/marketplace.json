@@ -7,8 +7,7 @@
   "plugins": [
     {
       "name": "claude-agents",
-      "source": "./",
-      "description": "Twelve cost-routing subagents: cheap pinned workers plus an unpinned architect that inherits the session model and effort."
+      "source": "./"
     }
   ]
 }

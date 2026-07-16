@@ -2,7 +2,7 @@
 
 A small, global set of **cost-routing subagents** for Claude Code. The whole point is to stop paying Opus prices for work that a cheaper model does just as well: search, mechanical edits, test-writing, translation, log-mining, doc-writing. The expensive model stays for the work that actually needs judgement.
 
-Install them as a **Claude Code plugin** (see below) or copy them into `~/.claude/agents/` with the bundled script — either way they're available in **every repo** on this machine. Invoke them with the `Agent` tool (`subagent_type: "scout"`, `"mechanic"`, … — plugin installs prefix the name, e.g. `"claude-agents:scout"`) or let the orchestrator delegate to them automatically.
+Install them as a **Claude Code plugin** (see [Install](#install)) or copy them into `~/.claude/agents/` with the bundled script — either way they're available in **every repo** on this machine. Invoke them with the `Agent` tool (`subagent_type: "scout"`, `"mechanic"`, …) or let the orchestrator delegate to them automatically.
 
 > Sibling of [`claude-skills`](../claude-skills). Same idea (a versioned, installable library of Claude Code tooling), different axis: skills package *know-how*, these package *who-does-it-and-on-which-model*.
 
@@ -59,7 +59,7 @@ The repo is a Claude Code plugin and its own marketplace. Inside any Claude Code
 /plugin install claude-agents
 ```
 
-Update later with `/plugin update claude-agents` (or `/plugin marketplace update claude-agents` to refresh from git first). Plugin-installed agents are **namespaced** — invoke them as `claude-agents:scout`, `claude-agents:mechanic`, etc.
+Update later with `/plugin update claude-agents@claude-agents` (or `/plugin marketplace update claude-agents` to refresh from git first — the plugin needs the `@claude-agents` marketplace qualifier, the marketplace doesn't). Plugin-installed agents are **namespaced** — invoke them as `claude-agents:scout`, `claude-agents:mechanic`, etc.
 
 ### With install.sh (raw copies, bare names)
 
@@ -90,7 +90,7 @@ Every agent, cheap or not:
 
 ## Adding an agent
 
-Drop a `agents/<name>.md` with the standard frontmatter (`name`, `description`, `tools`, `model`, `effort`) and a body following the existing shape (`Use when` / `Do not use — escalate instead` / `How I work` / `What I return`). Pick the **cheapest** model tier and effort that do the job; omit `model:`/`effort:` only for an agent that should deliberately inherit the session's `/model` and `/effort` (the `architect` pattern). Then `./install.sh <name>`.
+Drop a `agents/<name>.md` with the standard frontmatter (`name`, `description`, `tools`, `model`, `effort`) and a body following the existing shape (`Use when` / `Do not use — escalate instead` / `How I work` / `What I return`). Pick the **cheapest** model tier and effort that do the job; omit `model:`/`effort:` only for an agent that should deliberately inherit the session's `/model` and `/effort` (the `architect` pattern). Then `./install.sh <name>` for script installs; plugin installs pick the new agent up automatically from `agents/` — just commit, push, and have users run `/plugin marketplace update claude-agents` + `/plugin update claude-agents@claude-agents`.
 
 ## License
 
